@@ -1,4 +1,5 @@
 import { Header } from "./Header.js";
+import { Footer } from "./Footer.js";
 export function PageShell(content) {
   return `
      <div class="site-layout">
@@ -7,7 +8,7 @@ export function PageShell(content) {
        <main>
          ${content}
        </main>
-
+       ${Footer()}
      </div>
    `;
 }
