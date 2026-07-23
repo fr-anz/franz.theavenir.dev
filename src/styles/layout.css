@@ -1,0 +1,36 @@
+
+/* HEADER */
+.nav-bar {
+ 	width: 100%;
+  	padding-top: 1rem;
+    font-size: var(--text-lg);
+}
+
+.inner-container {
+	width: min(100% - (var(--page-padding) * 2), var(--container-width));
+	margin-inline: auto;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.logo {
+	font-weight: bold;
+}
+
+
+.nav-list {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	color: var(--color-text-secondary);
+}
+
+.nav-list a[aria-current="page"] {
+	color: var(--color-text-primary);
+	font-weight: bold;
+	text-decoration: underline;
+	text-underline-offset: 0.5rem;
+}
