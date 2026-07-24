@@ -6,7 +6,7 @@
     font-size: var(--text-lg);
 }
 
-.inner-container {
+.nav-container {
 	width: min(100% - (var(--page-padding) * 2), var(--container-width));
 	margin-inline: auto;
 

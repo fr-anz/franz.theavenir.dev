@@ -24,7 +24,7 @@ export function Header() {
 
   return /* HTML */ `
     <header class="nav-bar">
-      <div class="inner-container">
+      <div class="nav-container">
         <a href="/" class="logo"> { Franz } </a>
         <nav aria-label="Main navigation">
           <ul class="nav-list">

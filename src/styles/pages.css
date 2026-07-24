@@ -1,0 +1,22 @@
+.hero {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+	margin-top: 5rem;
+
+
+}
+
+.hero p {
+	margin-top: 0.75rem;
+	max-width: 75ch;
+	padding: 2px;
+}
+
+.portrait img {
+	grid-column: 1;
+	margin-top: 1rem;
+}
+
+.hero-content {
+	grid-column: 2;
+}
