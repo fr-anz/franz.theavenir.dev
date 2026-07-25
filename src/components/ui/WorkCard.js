@@ -7,7 +7,7 @@ export function WorkCard({
   sourceLink,
 } = {}) {
   return /* HTML */ `
-    <article class="work-card">
+    <article class="work-card carousel-card" data-carousel-card>
       <img class="card-img" src="${image}" alt="${imageAlt}" />
       <div class="card-body">
         <h3>${title}</h3>

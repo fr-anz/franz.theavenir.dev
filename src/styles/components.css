@@ -38,6 +38,7 @@
 	transition:
 		transform 180ms ease,
 		box-shadow 180ms ease;
+	height: 100%;
 
 }
 
@@ -52,11 +53,59 @@
 	flex-direction: column;
 	gap: 0.5rem;
 	padding: 1rem;
+	flex: 1;
 }
 
 .card-buttons {
 	display: flex;
-	flex-wrap: flex;
+	flex-wrap: wrap;
+
 	gap: 1rem;
-	margin-top: 0.5rem;
+	margin-top: auto;
 }
+
+.card-img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 16 / 8;
+	object-fit: cover;
+	object-position: top;
+}
+
+.carousel-card {
+    grid-area: 1 / 1;
+    width: min(100%, 34rem);
+    transition:
+      transform 300ms ease,
+      opacity 300ms ease,
+      box-shadow 300ms ease;
+    max-height: 30rem;
+  }
+
+.carousel-card.is-active {
+     z-index: 3;
+     opacity: 1;
+     transform: translateX(0) scale(1);
+     box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+   }
+
+.carousel-card.is-prev {
+     z-index: 2;
+     opacity: 0.55;
+     transform: translateX(-48%) scale(0.86) rotate(-4deg);
+   }
+
+.carousel-card.is-next {
+     z-index: 2;
+     opacity: 0.55;
+     transform: translateX(48%) scale(0.86) rotate(4deg);
+   }
+
+.carousel-card.is-prev,
+.carousel-card.is-next {
+       cursor: pointer;
+     }
+
+.carousel-card.is-active {
+       cursor: default;
+     }

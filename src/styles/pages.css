@@ -22,10 +22,16 @@
 
 .hero-buttons {
 	display: flex;
-	margin-top: 1rem;
+	margin-top: 4rem;
 	justify-content: flex-start;
 	max-width: 10rem;
 
+
+}
+
+.hero-buttons .button {
+	color: var(--color-surface);
+	background-color: black;
 }
 
 .work-selection {
@@ -33,26 +39,36 @@
 	padding-bottom: 5rem;
 }
 
-.work-grid {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 2rem;
+.carousel-stage {
 	margin-top: 2rem;
+	position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 38rem;
+    overflow: hidden;
+  }
 
-}
+.work-track .work-card {
+    flex: 0 0 min(100%, 34rem);
+    scroll-snap-align: start;
+  }
 
 .view-button {
- display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    text-decoration: none;
-    border: 1px solid var(--color-border);
-    font-size: var(--text-lg);
-}
+    justify-self: end;
+    width: 10rem;
+    height: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
 
 .view-button:hover {
-    color: var(--color-text-primary);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
     transform: translateY(-3px);
+}
+
+.work-text {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
 }
