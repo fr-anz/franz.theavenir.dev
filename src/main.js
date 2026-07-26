@@ -34,7 +34,7 @@ copyEmail?.addEventListener("click", async () => {
   }
 });
 
-// Carousel setup must be outside the email click handler
+// Carousel setup
 const carousel = document.querySelector("[data-carousel]");
 
 if (carousel) {
@@ -64,6 +64,7 @@ if (carousel) {
   renderCarousel();
 }
 
+// Github contribution calendar
 const contributionContainer = document.querySelector("#github-contributions");
 
 const contributionColors = {
