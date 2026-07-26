@@ -109,3 +109,31 @@
 .carousel-card.is-active {
        cursor: default;
      }
+
+
+.github-calendar {
+	display: flex;
+    width: 100%;
+    max-width: 100%;
+    gap: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.github-week {
+	display: flex;
+   	flex: 1 1 0;
+    min-width: 0;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.github-day {
+	display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    border-radius: 999px;
+  }
+}

@@ -6,6 +6,7 @@ import "./styles/utilities.css";
 import "./styles/components.css";
 import { HomePage } from "./pages/HomePage";
 import { PageShell } from "./components/layout/PageShell";
+import { fetchGithubContribution } from "./api/github";
 
 const app = document.querySelector("#app");
 
@@ -62,3 +63,48 @@ if (carousel) {
 
   renderCarousel();
 }
+
+const contributionContainer = document.querySelector("#github-contributions");
+
+const contributionColors = {
+  NONE: "#eeeeee",
+  FIRST_QUARTILE: "#bfdbfe",
+  SECOND_QUARTILE: "#93c5fd",
+  THIRD_QUARTILE: "#2563eb",
+  FOURTH_QUARTILE: "#1e3a8a",
+};
+
+fetchGithubContribution()
+  .then((calendar) => {
+    contributionContainer.innerHTML = `
+       <div class="github-calendar">
+         ${calendar.weeks
+           .map(
+             (week) => `
+               <div class="github-week">
+                 ${week.contributionDays
+                   .map(
+                     (day) => `
+                     <span
+                        class="github-day"
+                        title="${day.date}: ${day.contributionCount} contributions"
+                        style="background-color: ${
+                          contributionColors[day.contributionLevel] || "#eeeeee"
+                        }"
+                      ></span>
+
+                     `,
+                   )
+                   .join("")}
+               </div>
+
+             `,
+           )
+           .join("")}
+       </div>
+       <p class="contribution-count">${calendar.totalContributions} contributions in the last year</p>
+     `;
+  })
+  .catch(() => {
+    contributionContainer.textContent = "Unable to load GitHub contributions.";
+  });

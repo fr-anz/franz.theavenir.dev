@@ -61,6 +61,12 @@ export function HomePage() {
       </div>
     </section>
 
-    <section class="github container"></section>
+    <section class="github container">
+    <h2>Github</h2>
+
+    <div id="github-contributions">
+  loading..
+    </div>
+    </section>
   `;
 }
