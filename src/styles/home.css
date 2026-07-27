@@ -1,0 +1,45 @@
+.hero {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  margin-top: 5rem;
+}
+
+.hero p {
+  margin-top: 0.75rem;
+  max-width: 75ch;
+  padding: 2px;
+}
+
+.portrait img {
+  grid-column: 1;
+  margin-top: 1rem;
+}
+
+.hero-content {
+  grid-column: 2;
+}
+
+.hero-buttons {
+  display: flex;
+  margin-top: 4rem;
+  justify-content: flex-start;
+  max-width: 10rem;
+}
+
+.hero-buttons .button {
+  color: var(--color-surface);
+  background-color: black;
+}
+
+.portrait {
+  width: 300px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% top;
+}

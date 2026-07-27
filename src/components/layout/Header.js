@@ -1,14 +1,9 @@
-const navLinks = [
-  { href: "/", text: "Home" },
-  { href: "/projects", text: "Projects" },
-  { href: "/contact", text: "Contact" },
-  { href: "/guestbook", text: "Guestbook" },
-];
+import { site } from "../../content/site.js";
 
 export function Header() {
   const currentPath = window.location.pathname;
 
-  const links = navLinks
+  const links = site.navigation
     .map((link) => /* HTML */ {
       return /* HTML */ `
         <li>

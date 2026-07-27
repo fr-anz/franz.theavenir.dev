@@ -1,0 +1,27 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 2.5rem;
+  border: 1.5px solid;
+  font-size: var(--text-lg);
+  background-color: #fff;
+  color: #121212;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  outline: none;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+  white-space: nowrap;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow:
+    #121212 0 0 0 2px,
+    transparent 0 0 0 0;
+}

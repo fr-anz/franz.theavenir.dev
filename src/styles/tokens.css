@@ -1,19 +1,19 @@
 :root {
-	--color-bg: #f9f9f9;
-	--color-surface: #ffffff;
-	--color-text-primary:  #000000;
-	--color-text-secondary: #4a4a4a;
-	--color-border: #dadada;
-	--color-accent: #1e3a8a;
-	--color-accent-muted: #bfdbfe;
+  --color-bg: #f9f9f9;
+  --color-surface: #ffffff;
+  --color-text-primary: #000000;
+  --color-text-secondary: #4a4a4a;
+  --color-border: #dadada;
+  --color-accent: #1e3a8a;
+  --color-accent-muted: #bfdbfe;
 
-	--font-body: "PT Sans", sans-serif;
+  --font-body: "PT Sans", sans-serif;
 
-	--text-sm: 0.75rem;
-	--text-base: 1rem;
-	--text-lg: 1.25rem;
-	--text-xl: clamp(2rem, 5vw, 4.5rem);
+  --text-sm: 0.75rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(2rem, 5vw, 4.5rem);
 
-	--container-width: 1200px;
-    --page-padding: clamp(1rem, 4vw, 4rem);
+  --container-width: 1200px;
+  --page-padding: clamp(1rem, 4vw, 4rem);
 }

@@ -1,4 +1,4 @@
-export async function fetchGithubContribution() {
+export async function fetchGithubContributions() {
   const response = await fetch("/api/github-contributions");
 
   if (!response.ok) {

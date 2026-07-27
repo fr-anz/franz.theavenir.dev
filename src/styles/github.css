@@ -1,0 +1,62 @@
+.github {
+  margin-top: 2rem;
+}
+
+.contribution-count {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.github-calendar {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  gap: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.github-week {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.github-day {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  border-radius: 999px;
+}
+
+.github-skeleton {
+  display: grid;
+  grid-template-columns: repeat(53, minmax(0, 1fr));
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+  aspect-ratio: 53 / 7;
+}
+
+.github-skeleton-cell {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: #e5e5e5;
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

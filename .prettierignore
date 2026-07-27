@@ -1,0 +1,7 @@
+node_modules
+dist
+.vercel
+package-lock.json
+bun.lock
+public
+src/assets

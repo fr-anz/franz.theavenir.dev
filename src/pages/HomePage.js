@@ -1,43 +1,12 @@
 import { Button } from "../components/ui/Button.js";
-import { WorkCard } from "../components/ui/WorkCard.js";
-
-const workItems = [
-  {
-    title: "Binty",
-    description:
-      "Binty is a mobile application that combines real-time health monitoring, AI-powered routine generation, culturally relevant meal planning, and gentle behavioral nudges to help users build sustainable healthy habits",
-    projectLink: "",
-    sourceLink: "https://github.com/Badoobi/binty",
-    image: "/images/projects/binty.jpg",
-  },
-  {
-    title: "StudyOS",
-    description:
-      "A study planner that turns uploaded learning materials, deadlines, and availability into a focused, realistic study plan students can actually follow.",
-    projectLink: "http://study-os-dusky.vercel.app/",
-    sourceLink: "https://github.com/fr-anz/StudyOS",
-    image: "/images/projects/studyos.png",
-  },
-  {
-    title: "Meowmalize",
-    description:
-      "An information management study helper that simulates database normalization processes",
-    projectLink: "http://meowmalize.railway.app",
-    sourceLink: "https://github.com/fr-anz/Meowmalize",
-    image: "/images/projects/meowmalize.png",
-  },
-];
-
-// Github Skeleton
-const skeleton = Array.from(
-  {
-    length: 53 * 7,
-  },
-  () => `<span class="github-skeleton-cell"></span>`,
-).join("");
+import { guestbookNotes } from "../content/guestbookNotes.js";
+import { projects } from "../content/projects.js";
+import { GithubContributions } from "../features/github/GithubContributions.js";
+import { GuestbookJar } from "../features/guestbook/GuestbookJar.js";
+import { WorkCard } from "../features/projects/WorkCard.js";
 
 export function HomePage() {
-  const workCard = workItems.map((work) => WorkCard(work)).join("");
+  const workCards = projects.map((work) => WorkCard(work)).join("");
   return /* HTML */ `
     <section class="hero container">
       <div class="portrait img">
@@ -64,22 +33,15 @@ export function HomePage() {
        </div>
       <div class="work-carousel" data-carousel>
       <div class="carousel-stage">
-        ${workCard}
+        ${workCards}
         </div>
       </div>
     </section>
 
-    <section class="github container">
-    <h2>Github</h2>
-
-    <div
-       id="github-contributions"
-       aria-busy="true"
-       aria-label="Loading GitHub contributions"
-     >
-       <div class="github-skeleton" aria-hidden="true">
-         ${skeleton}
-       </div>
-     </div>
+     ${GithubContributions()}
+     <section class="guestbook container">
+            <h2>Guestbook</h2>
+            ${GuestbookJar(guestbookNotes)}
+          </section>
   `;
 }
