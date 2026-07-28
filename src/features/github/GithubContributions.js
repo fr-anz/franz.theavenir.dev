@@ -5,7 +5,7 @@ const skeleton = Array.from(
 
 export function GithubContributions() {
   return /* HTML */ `
-    <section class="github container">
+    <section class="github">
       <h2>Github</h2>
 
       <div

@@ -204,15 +204,32 @@ export function initGuestbookPhysics(
     registerSwan(swan, { dropFromTop });
   }
 
+  async function readApiResponse(response) {
+    const responseText = await response.text();
+    let payload = {};
+
+    try {
+      payload = responseText ? JSON.parse(responseText) : {};
+    } catch {
+      payload = {};
+    }
+
+    if (!response.ok) {
+      throw new Error(
+        payload.error || `Guestbook request failed (${response.status}).`,
+      );
+    }
+
+    return payload;
+  }
+
   async function loadSavedNotes() {
     try {
       const response = await fetch("/api/guestbook", {
         headers: { Accept: "application/json" },
       });
 
-      if (!response.ok) throw new Error("Could not load guest notes.");
-
-      const notes = await response.json();
+      const notes = await readApiResponse(response);
       notes.forEach((note) => {
         createSwan(note, note.swanColor);
       });
@@ -254,9 +271,7 @@ export function initGuestbookPhysics(
           website: formData.get("website"),
         }),
       });
-      const result = await response.json();
-
-      if (!response.ok) throw new Error(result.error || "Could not save note.");
+      const result = await readApiResponse(response);
 
       createSwan(result.note, result.note.swanColor, { dropFromTop: true });
       form.reset();

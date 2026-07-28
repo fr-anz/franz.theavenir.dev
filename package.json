@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --configLoader native",
+    "dev:api": "vercel dev --listen 3000",
     "build": "vite build --configLoader native",
     "format": "prettier --write \"src/**/*.{js,css}\" \"api/**/*.js\" \"*.{js,json,md,html}\"",
     "format:check": "prettier --check \"src/**/*.{js,css}\" \"api/**/*.js\" \"*.{js,json,md,html}\"",
