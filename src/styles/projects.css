@@ -3,6 +3,10 @@
   padding-bottom: 5rem;
 }
 
+.work-selection h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
 .work-text {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

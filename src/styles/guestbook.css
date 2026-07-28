@@ -2,6 +2,10 @@
   margin-top: 5rem;
 }
 
+.guestbook h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
 .guestbook-display {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
