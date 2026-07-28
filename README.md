@@ -35,7 +35,8 @@ npm run dev
 ```
 
 Copy `.env.example` to `.env.local` and provide a GitHub token if you want the
-contribution calendar to load through the Vercel API.
+contribution calendar to load through the Vercel API. Guestbook submissions
+are checked locally for abusive language before a note is saved.
 
 ## Checks
 

@@ -7,9 +7,10 @@
     "dev": "vite --configLoader native",
     "dev:api": "vercel dev --listen 3000",
     "build": "vite build --configLoader native",
-    "format": "prettier --write \"src/**/*.{js,css}\" \"api/**/*.js\" \"*.{js,json,md,html}\"",
-    "format:check": "prettier --check \"src/**/*.{js,css}\" \"api/**/*.js\" \"*.{js,json,md,html}\"",
-    "check": "npm run format:check && npm run build",
+    "format": "prettier --write \"src/**/*.{js,css}\" \"api/**/*.js\" \"test/**/*.js\" \"*.{js,json,md,html}\"",
+    "format:check": "prettier --check \"src/**/*.{js,css}\" \"api/**/*.js\" \"test/**/*.js\" \"*.{js,json,md,html}\"",
+    "test": "node test/guestbook-moderation.test.js",
+    "check": "npm run format:check && npm test && npm run build",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -17,6 +18,7 @@
     "vite": "^8.1.1"
   },
   "dependencies": {
+    "@2toad/profanity": "^3.3.0",
     "@neondatabase/serverless": "^1.1.0"
   }
 }
