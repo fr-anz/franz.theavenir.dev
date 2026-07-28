@@ -22,6 +22,7 @@ export function initGuestbookPhysics(
     "[data-guestbook-modal-message]",
   );
   const modalClose = guestbook?.querySelector("[data-guestbook-modal-close]");
+  const motionButton = root.querySelector("[data-guestbook-motion]");
 
   if (!playArea) return () => {};
 
@@ -200,12 +201,22 @@ export function initGuestbookPhysics(
   }
 
   async function requestDeviceMotionPermission() {
+    if (!motionButton || motionButton.disabled) return;
+
+    motionButton.disabled = true;
+    motionButton.textContent = "Requesting motion…";
+
     try {
       const permission = await globalThis.DeviceMotionEvent.requestPermission();
 
-      if (permission === "granted") startDeviceMotion();
+      if (permission === "granted") {
+        startDeviceMotion();
+        motionButton.hidden = true;
+      } else {
+        motionButton.textContent = "Motion access denied";
+      }
     } catch {
-      // The jar keeps its regular physics if motion access is unavailable.
+      motionButton.textContent = "Motion unavailable";
     }
   }
 
@@ -423,9 +434,10 @@ export function initGuestbookPhysics(
   playArea.addEventListener("pointerleave", resetPointerPosition);
 
   if (typeof globalThis.DeviceMotionEvent?.requestPermission === "function") {
-    playArea.addEventListener("pointerdown", requestDeviceMotionPermission, {
-      once: true,
-    });
+    if (motionButton) {
+      motionButton.hidden = false;
+      motionButton.addEventListener("click", requestDeviceMotionPermission);
+    }
   } else if (globalThis.DeviceMotionEvent) {
     startDeviceMotion();
   }
@@ -444,7 +456,7 @@ export function initGuestbookPhysics(
     modal?.removeEventListener("click", closeNoteFromBackdrop);
     playArea.removeEventListener("pointermove", disturbSwans);
     playArea.removeEventListener("pointerleave", resetPointerPosition);
-    playArea.removeEventListener("pointerdown", requestDeviceMotionPermission);
+    motionButton?.removeEventListener("click", requestDeviceMotionPermission);
     motionTarget?.removeEventListener("devicemotion", handleDeviceMotion);
     if (modal?.open) modal.close();
     bodies.forEach(({ element }) =>

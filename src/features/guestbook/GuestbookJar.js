@@ -112,6 +112,15 @@ export function GuestbookJar(notes = []) {
         </div>
 
         <img class="jar-art" src="/images/jar.png" alt="Guestbook jar" />
+
+        <button
+          class="guestbook-motion-toggle"
+          type="button"
+          data-guestbook-motion
+          hidden
+        >
+          Enable tilt & shake
+        </button>
       </div>
 
       <dialog

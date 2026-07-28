@@ -220,6 +220,36 @@
   overflow: hidden;
 }
 
+.guestbook-motion-toggle {
+  position: absolute;
+  bottom: 11%;
+  left: 50%;
+  z-index: 3;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #282722;
+  border-radius: 999px;
+  background: rgba(255, 252, 242, 0.92);
+  color: #282722;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.guestbook-motion-toggle[hidden] {
+  display: none;
+}
+
+.guestbook-motion-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.guestbook-motion-toggle:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
 .swan {
   position: absolute;
   width: clamp(90px, 12vw, 150px);
