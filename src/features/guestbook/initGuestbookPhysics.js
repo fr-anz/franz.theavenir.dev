@@ -37,6 +37,7 @@ export function initGuestbookPhysics(
   let hasMotionSample = false;
   let isDeviceMotionListening = false;
   let lastShakeTime = 0;
+  let previousScrollY = motionTarget?.scrollY ?? 0;
   let previousTime;
   let previousPointerPosition;
   let tiltX = 0;
@@ -140,6 +141,26 @@ export function initGuestbookPhysics(
 
   function resetPointerPosition() {
     previousPointerPosition = undefined;
+  }
+
+  function disturbSwansFromScroll() {
+    if (!motionTarget) return;
+
+    const scrollDelta = motionTarget.scrollY - previousScrollY;
+    previousScrollY = motionTarget.scrollY;
+
+    if (Math.abs(scrollDelta) < 1) return;
+
+    const verticalImpulse = Math.max(-2.5, Math.min(scrollDelta * -0.025, 2.5));
+    const sidewaysImpulse = Math.min(Math.abs(scrollDelta) * 0.006, 0.6);
+
+    bodies.forEach((body) => {
+      body.vx = Math.max(
+        -5,
+        Math.min(body.vx + (Math.random() - 0.5) * sidewaysImpulse, 5),
+      );
+      body.vy = Math.max(-5, Math.min(body.vy + verticalImpulse, 5));
+    });
   }
 
   function handleDeviceMotion(event) {
@@ -432,6 +453,9 @@ export function initGuestbookPhysics(
   modal?.addEventListener("click", closeNoteFromBackdrop);
   playArea.addEventListener("pointermove", disturbSwans);
   playArea.addEventListener("pointerleave", resetPointerPosition);
+  motionTarget?.addEventListener("scroll", disturbSwansFromScroll, {
+    passive: true,
+  });
 
   if (typeof globalThis.DeviceMotionEvent?.requestPermission === "function") {
     if (motionButton) {
@@ -456,6 +480,7 @@ export function initGuestbookPhysics(
     modal?.removeEventListener("click", closeNoteFromBackdrop);
     playArea.removeEventListener("pointermove", disturbSwans);
     playArea.removeEventListener("pointerleave", resetPointerPosition);
+    motionTarget?.removeEventListener("scroll", disturbSwansFromScroll);
     motionButton?.removeEventListener("click", requestDeviceMotionPermission);
     motionTarget?.removeEventListener("devicemotion", handleDeviceMotion);
     if (modal?.open) modal.close();
