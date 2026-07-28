@@ -7,8 +7,16 @@ export const site = {
     { href: "/guestbook", text: "Guestbook" },
   ],
   socialLinks: [
-    { href: "https://github.com/fr-anz", label: "Github" },
-    { href: "https://www.linkedin.com/in/franzbs", label: "LinkedIn" },
-    { href: "https://twitter.com/znrfrnz", label: "Twitter" },
+    { href: "https://github.com/fr-anz", label: "Github", icon: "github" },
+    {
+      href: "https://www.linkedin.com/in/franzbs",
+      label: "LinkedIn",
+      icon: "linkedin",
+    },
+    {
+      href: "https://twitter.com/znrfrnz",
+      label: "Twitter",
+      icon: "twitter",
+    },
   ],
 };

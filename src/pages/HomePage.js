@@ -3,6 +3,7 @@ import { achievements } from "../content/achievements.js";
 import { guestbookNotes } from "../content/guestbookNotes.js";
 import { projects } from "../content/projects.js";
 import { AchievementCard } from "../features/achievements/AchievementCard.js";
+import { ContactSection } from "../features/contact/ContactSection.js";
 import { GithubContributions } from "../features/github/GithubContributions.js";
 import { GuestbookJar } from "../features/guestbook/GuestbookJar.js";
 import { WorkCard } from "../features/projects/WorkCard.js";
@@ -78,9 +79,11 @@ export function HomePage() {
       </div>
     </section>
 
-     <section class="guestbook container">
-            <h2>Guestbook</h2>
-            ${GuestbookJar(guestbookNotes)}
-          </section>
+    ${ContactSection()}
+
+    <section class="guestbook container">
+      <h2>Guestbook</h2>
+      ${GuestbookJar(guestbookNotes)}
+    </section>
   `;
 }
