@@ -1,10 +1,38 @@
 import { createHash } from "node:crypto";
+import { Profanity } from "@2toad/profanity";
 import { neon } from "@neondatabase/serverless";
 
 const MAX_AUTHOR_LENGTH = 40;
 const MAX_MESSAGE_LENGTH = 250;
 const RATE_LIMIT_WINDOW = "10 minutes";
 const RATE_LIMIT_MAX_REQUESTS = 5;
+const ADDITIONAL_BLOCKED_WORDS = [
+  "beaner",
+  "gook",
+  "kike",
+  "raghead",
+  "spic",
+  "towelhead",
+  "tranny",
+  "wetback",
+];
+const LEETSPEAK_CHARACTERS = new Map([
+  ["0", "o"],
+  ["1", "i"],
+  ["3", "e"],
+  ["4", "a"],
+  ["5", "s"],
+  ["7", "t"],
+  ["@", "a"],
+  ["$", "s"],
+  ["+", "t"],
+]);
+const guestbookProfanity = new Profanity({
+  languages: ["en"],
+  unicodeWordBoundaries: true,
+});
+
+guestbookProfanity.addWords(ADDITIONAL_BLOCKED_WORDS);
 
 // This is intentionally duplicated on the server: a client must not be able
 // to submit an arbitrary image URL and turn it into stored page content.
@@ -14,6 +42,7 @@ const SWAN_COLORS = new Set([
   "/images/swans/swan-blue.png",
   "/images/swans/swan-green.png",
   "/images/swans/swan-pink.png",
+  "/images/swans/swan-purple.png",
   "/images/swans/swan-red.png",
   "/images/swans/swan-yellow.png",
 ]);
@@ -80,6 +109,25 @@ function findSpamReason(author, message, honeypot) {
   }
 
   return null;
+}
+
+function normalizeForLanguageFilter(value) {
+  return value
+    .normalize("NFKD")
+    .replace(/\p{M}/gu, "")
+    .toLowerCase()
+    .replace(/[013457@$+]/g, (character) => LEETSPEAK_CHARACTERS.get(character))
+    .replace(/([a-z])\1{2,}/g, "$1$1")
+    .replace(/(?<=[a-z])[\p{P}\p{S}_]+(?=[a-z])/gu, "")
+    .replace(/\b(?:[a-z]\s+){2,}[a-z]\b/g, (characters) =>
+      characters.replace(/\s+/g, ""),
+    );
+}
+
+export function containsBlockedLanguage(author, message) {
+  const content = normalizeForLanguageFilter(`${author}\n${message}`);
+
+  return guestbookProfanity.exists(content);
 }
 
 async function checkRateLimit(sql, clientKey) {
@@ -173,6 +221,12 @@ export default async function handler(request, response) {
     if (duplicate) {
       return sendJson(response, 409, {
         error: "That note was already added recently.",
+      });
+    }
+
+    if (containsBlockedLanguage(author, message)) {
+      return sendJson(response, 400, {
+        error: "Please keep guestbook notes kind and respectful.",
       });
     }
 
