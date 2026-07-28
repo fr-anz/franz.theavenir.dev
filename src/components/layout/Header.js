@@ -1,7 +1,7 @@
 import { site } from "../../content/site.js";
 
 export function Header() {
-  const currentPath = window.location.pathname;
+  const currentSection = window.location.hash || "#about";
 
   const links = site.navigation
     .map((link) => /* HTML */ {
@@ -9,7 +9,7 @@ export function Header() {
         <li>
           <a
             href="${link.href}"
-            ${link.href === currentPath ? 'aria-current="page"' : ""}
+            ${link.href === currentSection ? 'aria-current="location"' : ""}
             >${link.text}</a
           >
         </li>
@@ -20,8 +20,8 @@ export function Header() {
   return /* HTML */ `
     <header class="nav-bar">
       <div class="nav-container">
-        <a href="/" class="logo"> { Franz } </a>
-        <nav aria-label="Main navigation">
+        <a href="#about" class="logo"> { Franz } </a>
+        <nav aria-label="Main navigation" data-header-navigation>
           <ul class="nav-list">
             ${links}
           </ul>

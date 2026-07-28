@@ -3,7 +3,11 @@ import { Icon } from "../../components/ui/Icon.js";
 
 export function ContactSection() {
   return /* HTML */ `
-    <section class="contact container" aria-labelledby="contact-title">
+    <section
+      class="contact container"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
       <h2 id="contact-title">Contact Me</h2>
 
       <div class="contact-grid">

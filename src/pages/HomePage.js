@@ -31,7 +31,7 @@ export function HomePage() {
     .join("");
 
   return /* HTML */ `
-    <section class="hero container">
+    <section class="hero container" id="about">
       <div class="portrait img">
         <img src="./images/portrait.jpg" />
       </div>
@@ -49,26 +49,27 @@ export function HomePage() {
           ${Button({ label: "email me", id: "copy-email" })}
         </div>
       </div>
-    </section>
-    <section class="achievements-github-grid container">
-      <section class="achievements" aria-labelledby="achievements-title">
-        <h2 id="achievements-title">Achievements</h2>
 
-        <div class="achievement-carousel" data-achievement-carousel>
-          <div class="achievement-viewport" aria-live="polite">
-            <div class="achievement-track" data-achievement-track>
-              ${achievementSlides}
-            </div>
-            <div class="achievement-dots" role="tablist" aria-label="Achievement slides">
-              ${achievementDots}
+      <div class="hero-widgets">
+        <section class="achievements hero-widget" aria-labelledby="achievements-title">
+          <h2 id="achievements-title">Achievements</h2>
+
+          <div class="achievement-carousel" data-achievement-carousel>
+            <div class="achievement-viewport" aria-live="polite">
+              <div class="achievement-track" data-achievement-track>
+                ${achievementSlides}
+              </div>
+              <div class="achievement-dots" role="tablist" aria-label="Achievement slides">
+                ${achievementDots}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      ${GithubContributions()}
+        </section>
+        ${GithubContributions()}
+      </div>
     </section>
 
-    <section class="work-selection container">
+    <section class="work-selection container" id="projects">
      <div class="work-text"> <h2>Featured Projects</h2>
        <a class="view-button" href="/projects"><span> View All Project </span></a>
        </div>
@@ -79,11 +80,11 @@ export function HomePage() {
       </div>
     </section>
 
-    ${ContactSection()}
-
-    <section class="guestbook container">
+    <section class="guestbook container" id="guestbook">
       <h2>Guestbook</h2>
       ${GuestbookJar(guestbookNotes)}
     </section>
+
+    ${ContactSection()}
   `;
 }

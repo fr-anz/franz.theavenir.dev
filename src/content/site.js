@@ -1,10 +1,10 @@
 export const site = {
   email: "franzemmanuelbaes@gmail.com",
   navigation: [
-    { href: "/", text: "Home" },
-    { href: "/projects", text: "Projects" },
-    { href: "/contact", text: "Contact" },
-    { href: "/guestbook", text: "Guestbook" },
+    { href: "#about", text: "About" },
+    { href: "#projects", text: "Projects" },
+    { href: "#guestbook", text: "Guestbook" },
+    { href: "#contact", text: "Contact" },
   ],
   socialLinks: [
     { href: "https://github.com/fr-anz", label: "Github", icon: "github" },

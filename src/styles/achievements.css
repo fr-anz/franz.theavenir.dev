@@ -2,23 +2,10 @@
   min-width: 0;
 }
 
-.achievements-github-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: stretch;
-  margin-top: 4rem;
-}
-
 .achievements,
 .github {
   width: 100%;
   min-width: 0;
-}
-
-.achievements h2,
-.github h2 {
-  margin-bottom: 1.25rem;
 }
 
 .achievement-carousel {
@@ -95,10 +82,6 @@
 }
 
 @media (max-width: 600px) {
-  .achievements-github-grid {
-    grid-template-columns: 1fr;
-  }
-
   .achievement-slide {
     min-height: 5.5rem;
   }
