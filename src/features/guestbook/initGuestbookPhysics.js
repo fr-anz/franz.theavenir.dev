@@ -25,11 +25,20 @@ export function initGuestbookPhysics(
 
   if (!playArea) return () => {};
 
+  const motionTarget = typeof window === "undefined" ? null : window;
   const bodies = [];
   let areaWidth = 0;
   let areaHeight = 0;
   let animationFrame;
+  let gravityX = 0;
+  let gravityY = 0;
+  let gravityZ = 0;
+  let hasMotionSample = false;
+  let isDeviceMotionListening = false;
+  let lastShakeTime = 0;
   let previousTime;
+  let previousPointerPosition;
+  let tiltX = 0;
 
   function measurePlayArea() {
     areaWidth = playArea.clientWidth;
@@ -81,6 +90,125 @@ export function initGuestbookPhysics(
     body.element.style.transform = `translate3d(${body.x}px, ${body.y}px, 0)`;
   }
 
+  function disturbSwans(event) {
+    if (event.pointerType && event.pointerType !== "mouse") return;
+
+    const bounds = playArea.getBoundingClientRect();
+    const pointerX = event.clientX - bounds.left;
+    const pointerY = event.clientY - bounds.top;
+    const movementX = previousPointerPosition
+      ? pointerX - previousPointerPosition.x
+      : event.movementX;
+    const movementY = previousPointerPosition
+      ? pointerY - previousPointerPosition.y
+      : event.movementY;
+
+    previousPointerPosition = { x: pointerX, y: pointerY };
+
+    const pointerSpeed = Math.min(Math.hypot(movementX, movementY), 24);
+    if (pointerSpeed < 0.5) return;
+
+    const influenceRadius = Math.max(
+      100,
+      Math.min(areaWidth, areaHeight) * 0.45,
+    );
+
+    bodies.forEach((body) => {
+      const dx = body.x + body.width / 2 - pointerX;
+      const dy = body.y + body.height / 2 - pointerY;
+      const distance = Math.hypot(dx, dy) || 0.001;
+      const proximity = Math.max(0, 1 - distance / influenceRadius);
+      const movementTransfer = 0.012 + proximity * 0.035;
+      const repulsion = proximity * (0.3 + pointerSpeed * 0.04);
+      const jitter = pointerSpeed * 0.025;
+
+      body.vx +=
+        movementX * movementTransfer +
+        (dx / distance) * repulsion +
+        (Math.random() - 0.5) * jitter;
+      body.vy +=
+        movementY * movementTransfer +
+        (dy / distance) * repulsion -
+        proximity * 0.25 +
+        (Math.random() - 0.5) * jitter;
+
+      body.vx = Math.max(-5, Math.min(body.vx, 5));
+      body.vy = Math.max(-5, Math.min(body.vy, 5));
+    });
+  }
+
+  function resetPointerPosition() {
+    previousPointerPosition = undefined;
+  }
+
+  function handleDeviceMotion(event) {
+    const acceleration = event.accelerationIncludingGravity;
+
+    if (
+      !acceleration ||
+      !Number.isFinite(acceleration.x) ||
+      !Number.isFinite(acceleration.y) ||
+      !Number.isFinite(acceleration.z)
+    ) {
+      return;
+    }
+
+    if (!hasMotionSample) {
+      gravityX = acceleration.x;
+      gravityY = acceleration.y;
+      gravityZ = acceleration.z;
+      hasMotionSample = true;
+      return;
+    }
+
+    const shakeX = acceleration.x - gravityX;
+    const shakeY = acceleration.y - gravityY;
+    const shakeZ = acceleration.z - gravityZ;
+
+    gravityX += shakeX * 0.12;
+    gravityY += shakeY * 0.12;
+    gravityZ += shakeZ * 0.12;
+    tiltX = Math.max(-1, Math.min(gravityX / 7, 1));
+
+    const shakeStrength = Math.hypot(shakeX, shakeY, shakeZ);
+    const currentTime = performance.now();
+
+    if (
+      shakeStrength < 9 ||
+      (lastShakeTime && currentTime - lastShakeTime < 250)
+    ) {
+      return;
+    }
+
+    lastShakeTime = currentTime;
+    const impulse = Math.min(5, 1.5 + (shakeStrength - 9) * 0.35);
+
+    bodies.forEach((body) => {
+      body.vx = Math.max(
+        -5,
+        Math.min(body.vx + (Math.random() - 0.5) * impulse * 2, 5),
+      );
+      body.vy = Math.max(-5, Math.min(body.vy - Math.random() * impulse, 5));
+    });
+  }
+
+  function startDeviceMotion() {
+    if (!motionTarget || isDeviceMotionListening) return;
+
+    motionTarget.addEventListener("devicemotion", handleDeviceMotion);
+    isDeviceMotionListening = true;
+  }
+
+  async function requestDeviceMotionPermission() {
+    try {
+      const permission = await globalThis.DeviceMotionEvent.requestPermission();
+
+      if (permission === "granted") startDeviceMotion();
+    } catch {
+      // The jar keeps its regular physics if motion access is unavailable.
+    }
+  }
+
   /**
    * Registers an existing button as a physics body. New submissions start at
    * the top of the jar so the visitor can see their swan drop into the pile.
@@ -113,6 +241,7 @@ export function initGuestbookPhysics(
     previousTime = currentTime;
 
     bodies.forEach((body) => {
+      body.vx += tiltX * 0.06 * timeScale;
       body.vy += 0.35 * timeScale;
       body.x += body.vx * timeScale;
       body.y += body.vy * timeScale;
@@ -290,6 +419,17 @@ export function initGuestbookPhysics(
   form?.addEventListener("submit", submitNote);
   modalClose?.addEventListener("click", closeNoteModal);
   modal?.addEventListener("click", closeNoteFromBackdrop);
+  playArea.addEventListener("pointermove", disturbSwans);
+  playArea.addEventListener("pointerleave", resetPointerPosition);
+
+  if (typeof globalThis.DeviceMotionEvent?.requestPermission === "function") {
+    playArea.addEventListener("pointerdown", requestDeviceMotionPermission, {
+      once: true,
+    });
+  } else if (globalThis.DeviceMotionEvent) {
+    startDeviceMotion();
+  }
+
   void loadSavedNotes();
 
   const resizeObserver = new ResizeObserver(measurePlayArea);
@@ -302,6 +442,10 @@ export function initGuestbookPhysics(
     form?.removeEventListener("submit", submitNote);
     modalClose?.removeEventListener("click", closeNoteModal);
     modal?.removeEventListener("click", closeNoteFromBackdrop);
+    playArea.removeEventListener("pointermove", disturbSwans);
+    playArea.removeEventListener("pointerleave", resetPointerPosition);
+    playArea.removeEventListener("pointerdown", requestDeviceMotionPermission);
+    motionTarget?.removeEventListener("devicemotion", handleDeviceMotion);
     if (modal?.open) modal.close();
     bodies.forEach(({ element }) =>
       element.removeEventListener("click", showNote),
