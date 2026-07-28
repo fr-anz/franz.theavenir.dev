@@ -1,7 +1,201 @@
+.guestbook {
+  margin-top: 5rem;
+}
+
+.guestbook-display {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  margin-top: 2rem;
+}
+
+/*
+ * The clipped corners and slight rotation create the irregular paper shape
+ * from the sketch while the form controls remain standard and accessible.
+ */
+.guestbook-note {
+  width: min(100%, 390px);
+  min-height: 440px;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  background: #fffbed;
+  color: #282722;
+  clip-path: polygon(
+    2% 4%,
+    20% 3%,
+    27% 1%,
+    49% 3%,
+    66% 2%,
+    84% 4%,
+    97% 2%,
+    96% 23%,
+    99% 42%,
+    97% 63%,
+    99% 96%,
+    74% 97%,
+    52% 95%,
+    30% 98%,
+    3% 96%,
+    4% 69%,
+    1% 47%
+  );
+  filter: drop-shadow(0.5rem 0.65rem 0 rgba(71, 64, 44, 0.14));
+  transform: rotate(-1.25deg);
+}
+
+.guestbook-note-field + .guestbook-note-field {
+  margin-top: 1.5rem;
+}
+
+.guestbook-note-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.guestbook-note-input {
+  width: 100%;
+  padding: 0.35rem 0.15rem;
+  border: 0;
+  border-bottom: 1px solid rgba(40, 39, 34, 0.45);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 1rem;
+}
+
+.guestbook-note-input:focus-visible {
+  outline: 0;
+  border-bottom-color: #282722;
+  box-shadow: 0 2px 0 #282722;
+}
+
+.guestbook-note-message {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.guestbook-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.guestbook-color-field {
+  min-width: 0;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.swan-color-picker {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(34px, 1fr));
+  gap: 0.3rem;
+}
+
+.swan-color-option {
+  position: relative;
+  min-width: 0;
+  cursor: pointer;
+}
+
+/*
+ * The native radios stay keyboard-accessible while their adjacent swatches
+ * provide the larger visual target and selected state.
+ */
+.swan-color-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.swan-color-swatch {
+  display: grid;
+  min-height: 42px;
+  place-items: center;
+  padding: 0.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.swan-color-swatch img {
+  width: 100%;
+  height: auto;
+}
+
+.swan-color-option:hover .swan-color-swatch {
+  transform: translateY(-2px);
+}
+
+.swan-color-input:checked + .swan-color-swatch {
+  border-color: #282722;
+  background: rgba(40, 39, 34, 0.08);
+  transform: translateY(-2px);
+}
+
+.swan-color-input:focus-visible + .swan-color-swatch {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.guestbook-note-actions {
+  display: flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.guestbook-form-status {
+  color: #514d40;
+  font-size: var(--text-sm);
+}
+
+.guestbook-submit {
+  flex: 0 0 auto;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #282722;
+  border-radius: 0;
+  background: #282722;
+  color: #fffbed;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease;
+}
+
+.guestbook-submit:hover {
+  background: #454238;
+}
+
+.guestbook-submit:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.guestbook-submit:active {
+  transform: translateY(1px);
+}
+
 .guestbook-jar {
   position: relative;
-  width: min(90vw, 600px);
-  margin: 2rem auto;
+  width: 100%;
+  max-width: 600px;
+  margin-inline: auto;
   aspect-ratio: 3 / 4;
 }
 
@@ -24,7 +218,7 @@
 
 .swan {
   position: absolute;
-  width: clamp(150px, 5vw, 150px);
+  width: clamp(90px, 12vw, 150px);
   line-height: 0;
   padding: 0;
   border: 0;
@@ -37,4 +231,204 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+/*
+ * The dialog supplies focus trapping, Escape handling, and top-layer stacking
+ * natively. Its inner article owns the irregular paper treatment.
+ */
+.guestbook-modal {
+  width: min(90vw, 580px);
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #282722;
+  overflow: visible;
+}
+
+.guestbook-modal::backdrop {
+  background: rgba(26, 25, 22, 0.56);
+  backdrop-filter: blur(2px);
+}
+
+.guestbook-modal-paper {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  max-height: min(78dvh, 650px);
+  padding: clamp(3rem, 8vw, 5rem);
+  overflow-y: auto;
+  background:
+    linear-gradient(
+      118deg,
+      transparent 0 29%,
+      rgba(92, 82, 52, 0.07) 30%,
+      transparent 32% 100%
+    ),
+    linear-gradient(
+      31deg,
+      transparent 0 63%,
+      rgba(92, 82, 52, 0.08) 64%,
+      transparent 66% 100%
+    ),
+    linear-gradient(
+      166deg,
+      transparent 0 76%,
+      rgba(255, 255, 255, 0.65) 77%,
+      transparent 79% 100%
+    ),
+    #fffbed;
+  clip-path: polygon(
+    3% 5%,
+    17% 2%,
+    31% 4%,
+    46% 1%,
+    63% 4%,
+    78% 2%,
+    97% 5%,
+    95% 21%,
+    99% 38%,
+    96% 57%,
+    99% 76%,
+    95% 97%,
+    78% 95%,
+    61% 98%,
+    43% 95%,
+    24% 98%,
+    4% 94%,
+    6% 74%,
+    2% 55%,
+    5% 34%
+  );
+  filter: drop-shadow(0.8rem 1rem 0 rgba(19, 18, 16, 0.2));
+  transform: rotate(-0.75deg);
+}
+
+.guestbook-modal[open] .guestbook-modal-paper {
+  animation: reveal-guestbook-note 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.guestbook-modal-close {
+  position: absolute;
+  top: clamp(1.5rem, 5vw, 2.5rem);
+  right: clamp(1.5rem, 5vw, 2.5rem);
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(40, 39, 34, 0.45);
+  border-radius: 50%;
+  background: rgba(255, 251, 237, 0.72);
+  color: inherit;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease;
+}
+
+.guestbook-modal-close:hover {
+  background: #fffbed;
+  transform: rotate(4deg);
+}
+
+.guestbook-modal-close:active {
+  transform: scale(0.96);
+}
+
+.guestbook-modal-close svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.guestbook-modal-kicker {
+  color: #6a6351;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.guestbook-modal-author {
+  max-width: calc(100% - 3rem);
+  margin-top: 0.45rem;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(1.8rem, 6vw, 3.2rem);
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.guestbook-modal-rule {
+  width: min(100%, 15rem);
+  height: 1px;
+  margin-block: 1.5rem 2rem;
+  background: rgba(40, 39, 34, 0.35);
+  transform: rotate(-1deg);
+}
+
+.guestbook-modal-message {
+  max-width: 42ch;
+  color: #38362f;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+@keyframes reveal-guestbook-note {
+  from {
+    opacity: 0;
+    transform: rotate(-2.5deg) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(-0.75deg) scale(1);
+  }
+}
+
+@media (max-width: 800px) {
+  .guestbook-display {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .guestbook-note {
+    /* Leave breathing room for the rotated corners inside narrow viewports. */
+    width: min(calc(100% - 1rem), 390px);
+    margin-inline: auto;
+    transform: rotate(-0.5deg);
+  }
+
+  .guestbook-jar {
+    max-width: 500px;
+  }
+
+  .guestbook-modal {
+    width: min(92vw, 580px);
+  }
+
+  .guestbook-modal-paper {
+    min-height: 320px;
+    padding: 3.5rem 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /*
+   * Two short rows keep all seven artwork choices comfortably tappable without
+   * forcing the paper wider than the phone viewport.
+   */
+  .swan-color-picker {
+    grid-template-columns: repeat(4, minmax(44px, 1fr));
+    max-width: 250px;
+  }
+
+  .guestbook-modal-paper {
+    padding: 4rem 2rem 3rem;
+  }
 }
