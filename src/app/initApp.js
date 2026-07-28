@@ -3,6 +3,7 @@ import { initCopyEmail } from "../features/contact/initCopyEmail.js";
 import { initAchievementCarousel } from "../features/achievements/initAchievementCarousel.js";
 import { initGithubContributions } from "../features/github/initGithubContributions.js";
 import { initGuestbookPhysics } from "../features/guestbook/initGuestbookPhysics.js";
+import { initScrollReveal } from "../features/motion/initScrollReveal.js";
 import { initHeaderNavigation } from "../features/navigation/initHeaderNavigation.js";
 import { initProjectCarousel } from "../features/projects/initProjectCarousel.js";
 import { HomePage } from "../pages/HomePage.js";
@@ -20,4 +21,5 @@ export function initApp(root) {
   initGithubContributions();
   initGuestbookPhysics();
   initHeaderNavigation();
+  initScrollReveal();
 }

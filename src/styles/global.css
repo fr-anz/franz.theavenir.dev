@@ -24,12 +24,52 @@ ol {
 }
 
 body {
+  position: relative;
   min-width: 320px;
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-body);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
+}
+
+/*
+ * A fixed technical-paper texture adds depth without repainting as the page
+ * scrolls. Both layers sit behind the site and ignore pointer input.
+ */
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+}
+
+body::before {
+  background-image:
+    linear-gradient(#f9f9f9 1px, transparent 1px),
+    linear-gradient(90deg, #f9f9f9 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.78) 62%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.78) 62%,
+    transparent 100%
+  );
+}
+
+body::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.34'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+  opacity: 0.04;
 }
 
 h1,
@@ -89,6 +129,19 @@ button {
 .container {
   width: min(100% - (var(--page-padding) * 2), var(--container-width));
   margin-inline: auto;
+}
+
+html.has-scroll-reveal [data-scroll-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 1rem, 0);
+  transition:
+    opacity 750ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.has-scroll-reveal [data-scroll-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
