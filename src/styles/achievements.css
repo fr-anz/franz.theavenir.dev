@@ -81,8 +81,24 @@
   background: #f7f7f7;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .achievement-slide {
     min-height: 5.5rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .achievement-slide {
+    padding-inline: 1rem;
+  }
+
+  .achievement-topline {
+    gap: 0.75rem;
+  }
+
+  .achievement-distinction,
+  .achievement-year,
+  .achievement-title {
+    font-size: 0.9rem;
   }
 }

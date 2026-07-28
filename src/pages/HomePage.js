@@ -33,25 +33,34 @@ export function HomePage() {
   return /* HTML */ `
     <section class="hero container" id="about">
       <div class="portrait img">
-        <img src="./images/portrait.jpg" />
+        <img
+          src="./images/portrait.jpg"
+          alt="Portrait of Franz Emmanuel Baes"
+        />
       </div>
 
       <div class="hero-content">
         <h1>Franz Emmanuel Baes</h1>
 
         <p>
-          I am an aspiring full-stack engineer. I enjoy learning
-          through building applications that make complex ideas simple.
-          <br></br>
-          as of the moment, i love participating in hackathons with the mindset of turning concepts into tangible solutions.
+          I’m an aspiring full-stack engineer who enjoys building applications
+          that turn complex ideas into practical, scalable products. I regularly
+          participate in hackathons, where I collaborate with teams to transform
+          early concepts into working solutions.
         </p>
         <div class="hero-buttons">
-          ${Button({ label: "email me", id: "copy-email" })}
+          ${Button({ label: "Email Me", id: "copy-email" })}
+          <a class="button hero-projects-link" href="#projects">
+            View Projects
+          </a>
         </div>
       </div>
 
       <div class="hero-widgets">
-        <section class="achievements hero-widget" aria-labelledby="achievements-title">
+        <section
+          class="achievements hero-widget"
+          aria-labelledby="achievements-title"
+        >
           <h2 id="achievements-title">Achievements</h2>
 
           <div class="achievement-carousel" data-achievement-carousel>
@@ -59,7 +68,11 @@ export function HomePage() {
               <div class="achievement-track" data-achievement-track>
                 ${achievementSlides}
               </div>
-              <div class="achievement-dots" role="tablist" aria-label="Achievement slides">
+              <div
+                class="achievement-dots"
+                role="tablist"
+                aria-label="Achievement slides"
+              >
                 ${achievementDots}
               </div>
             </div>
@@ -70,13 +83,18 @@ export function HomePage() {
     </section>
 
     <section class="work-selection container" id="projects">
-     <div class="work-text"> <h2>Featured Projects</h2>
-       <a class="view-button" href="/projects"><span> View All Project </span></a>
-       </div>
+      <div class="work-text">
+        <h2>Featured Projects</h2>
+        <a
+          class="view-button"
+          href="https://github.com/fr-anz"
+          target="_blank"
+          rel="noreferrer"
+          ><span> View All Projects </span></a
+        >
+      </div>
       <div class="work-carousel" data-carousel>
-      <div class="carousel-stage">
-        ${workCards}
-        </div>
+        <div class="carousel-stage">${workCards}</div>
       </div>
     </section>
 

@@ -6,14 +6,16 @@ export const projects = [
     projectLink: "",
     sourceLink: "https://github.com/Badoobi/binty",
     image: "/images/projects/binty.jpg",
+    imageAlt: "Screenshot of the Binty mobile health application",
   },
   {
-    title: "StudyOS",
+    title: "Kumpas",
     description:
-      "A study planner that turns uploaded learning materials, deadlines, and availability into a focused, realistic study plan students can actually follow.",
-    projectLink: "http://study-os-dusky.vercel.app/",
-    sourceLink: "https://github.com/fr-anz/StudyOS",
-    image: "/images/projects/studyos.png",
+      "An offline-first Filipino Sign Language communication assistant",
+    projectLink: "https://kumpas.theavenir.dev/",
+    sourceLink: "https://github.com/fr-anz/Kumpas",
+    image: "/images/projects/kumpas.png",
+    imageAlt: "Screenshot of Kumpas",
   },
   {
     title: "Meowmalize",
@@ -22,5 +24,6 @@ export const projects = [
     projectLink: "http://meowmalize.railway.app",
     sourceLink: "https://github.com/fr-anz/Meowmalize",
     image: "/images/projects/meowmalize.png",
+    imageAlt: "Screenshot of the Meowmalize database normalization tool",
   },
 ];

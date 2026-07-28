@@ -1,6 +1,7 @@
 .hero {
   display: grid;
   grid-template-columns: 0.5fr 1fr;
+  column-gap: clamp(2rem, 6vw, 6rem);
   margin-top: 5rem;
 }
 
@@ -41,14 +42,24 @@
 
 .hero-buttons {
   display: flex;
-  margin-top: 4rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   justify-content: flex-start;
-  max-width: 10rem;
+  margin-top: 4rem;
 }
 
 .hero-buttons .button {
+  flex: 0 0 10rem;
+}
+
+.hero-buttons #copy-email {
   color: var(--color-surface);
   background-color: black;
+}
+
+.hero-projects-link {
+  color: var(--color-text-primary);
+  background: transparent;
 }
 
 .portrait {
@@ -78,15 +89,30 @@
   object-position: 50% top;
 }
 
-@media (max-width: 900px) {
+/* Tablets retain the split hero but stack its denser data widgets. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1fr);
+    column-gap: 3rem;
+  }
+
+  .portrait {
+    width: min(100%, 260px);
+    height: auto;
+    aspect-ratio: 6 / 7;
+  }
+
   .hero-widgets {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-@media (max-width: 800px) {
+/* Mobile uses one strict column to prevent the offset portrait from clipping. */
+@media (max-width: 767px) {
   .hero {
     grid-template-columns: 1fr;
+    margin-top: 4rem;
   }
 
   .hero-content {
@@ -94,16 +120,59 @@
   }
 
   .portrait {
-    width: min(100%, 300px);
-    margin-bottom: 2rem;
+    width: min(82vw, 300px);
+    height: auto;
+    margin: 0 0 2.5rem 0.75rem;
+    aspect-ratio: 6 / 7;
+  }
+
+  .hero-buttons {
+    margin-top: 2.5rem;
+  }
+
+  .hero-widgets {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3.5rem;
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    margin-top: 3rem;
+  }
+
+  .hero p {
+    padding: 0;
+  }
+
+  .hero-buttons .button {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
   .portrait::before {
     top: -0.75rem;
     right: 0.75rem;
     bottom: 0.75rem;
     left: -0.75rem;
+  }
+}
+
+/* The portrait and copy scale together instead of floating in unused space. */
+@media (min-width: 1440px) {
+  .hero {
+    grid-template-columns: 0.62fr 1.38fr;
+    margin-top: 6rem;
+  }
+
+  .portrait {
+    width: 340px;
+    height: 400px;
+  }
+
+  .hero-widgets {
+    gap: 2rem;
+    margin-top: 5rem;
   }
 }

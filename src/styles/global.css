@@ -131,6 +131,10 @@ button {
   margin-inline: auto;
 }
 
+main > section {
+  scroll-margin-top: 2rem;
+}
+
 html.has-scroll-reveal [data-scroll-reveal] {
   opacity: 0;
   transform: translate3d(0, 1rem, 0);
@@ -154,5 +158,16 @@ html.has-scroll-reveal [data-scroll-reveal].is-visible {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Compact phones retain readable type without letting headings overflow. */
+@media (max-width: 479px) {
+  h1 {
+    font-size: clamp(2.25rem, 12vw, 3.25rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 10vw, 2.75rem);
   }
 }

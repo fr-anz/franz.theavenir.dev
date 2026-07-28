@@ -13,7 +13,7 @@ export function initCopyEmail(button = document.querySelector("#copy-email")) {
       button.textContent = "Email Copied";
 
       setTimeout(() => {
-        button.textContent = "email me";
+        button.textContent = "Email me";
       }, 1600);
     } catch {
       button.textContent = "Error";

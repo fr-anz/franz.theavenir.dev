@@ -60,3 +60,24 @@
     opacity: 1;
   }
 }
+
+/* Smaller gaps keep all 53 contribution weeks legible on narrow widgets. */
+@media (max-width: 767px) {
+  .github-calendar,
+  .github-week,
+  .github-skeleton {
+    gap: 2px;
+  }
+
+  .contribution-count {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .github-calendar,
+  .github-week,
+  .github-skeleton {
+    gap: 1px;
+  }
+}

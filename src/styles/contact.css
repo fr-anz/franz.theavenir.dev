@@ -62,9 +62,34 @@
   fill: currentColor;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
+  .contact {
+    margin-top: 4rem;
+    padding-bottom: 5rem;
+  }
+
+  .contact h2 {
+    margin-bottom: 2.5rem;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .contact-column a {
+    font-size: 1rem;
+  }
+
+  .contact-link {
+    gap: 0.6rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .contact-grid {
+    max-width: 64rem;
   }
 }

@@ -25,6 +25,10 @@
   color: var(--color-text-secondary);
 }
 
+.nav-list a {
+  transition: color 180ms ease;
+}
+
 .nav-list a[aria-current="location"] {
   color: var(--color-text-primary);
   font-weight: bold;
@@ -108,8 +112,71 @@ main > section + section::before {
   color: var(--color-accent);
 }
 
-@media (max-width: 600px) {
+/* Tablet navigation keeps the desktop row while using a tighter link rhythm. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-list {
+    gap: 1.25rem;
+  }
+
+  .footer {
+    padding-top: 5rem;
+  }
+}
+
+/* Phones place navigation on its own row so no link is clipped or wrapped. */
+@media (max-width: 767px) {
+  .nav-bar {
+    font-size: var(--text-base);
+  }
+
+  .nav-container {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .nav-container nav {
+    min-width: 0;
+  }
+
+  .nav-list {
+    justify-content: space-between;
+    gap: clamp(0.6rem, 3vw, 1.25rem);
+    font-size: clamp(0.8rem, 3.4vw, 0.95rem);
+  }
+
+  .nav-list a[aria-current="location"] {
+    text-underline-offset: 0.3rem;
+  }
+
+  main > section + section::before {
+    width: 70%;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer {
+    padding-top: 4rem;
+  }
+
+  .footer-name {
+    margin-bottom: 3rem;
+    font-size: clamp(2.75rem, 15vw, 4.75rem);
+  }
+}
+
+@media (max-width: 479px) {
   .footer-links {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Wide displays gain breathing room without allowing lines to become unwieldy. */
+@media (min-width: 1440px) {
+  .nav-bar {
+    padding-top: 1.5rem;
+  }
+
+  .footer-links {
+    max-width: 34rem;
   }
 }

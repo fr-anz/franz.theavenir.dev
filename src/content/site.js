@@ -14,7 +14,7 @@ export const site = {
       icon: "linkedin",
     },
     {
-      href: "https://twitter.com/znrfrnz",
+      href: "https://twitter.com/1126znrf",
       label: "Twitter",
       icon: "twitter",
     },

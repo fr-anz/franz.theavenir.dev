@@ -6,9 +6,11 @@ export function WorkCard({
   projectLink,
   sourceLink,
 } = {}) {
+  const accessibleImageAlt = imageAlt || `${title} project screenshot`;
+
   return /* HTML */ `
     <article class="work-card carousel-card" data-carousel-card>
-      <img class="card-img" src="${image}" alt="${imageAlt}" />
+      <img class="card-img" src="${image}" alt="${accessibleImageAlt}" />
       <div class="card-body">
         <h3>${title}</h3>
         <p>${description}</p>
