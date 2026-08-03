@@ -3,7 +3,8 @@ export const projects = [
     title: "Binty",
     description:
       "Binty is a mobile application that combines real-time health monitoring, AI-powered routine generation, culturally relevant meal planning, and gentle behavioral nudges to help users build sustainable healthy habits",
-    projectLink: "",
+    projectLink:
+      "https://devpost.com/software/binty-pangarap-sa-malusog-na-pamumuhay",
     sourceLink: "https://github.com/Badoobi/binty",
     image: "/images/projects/binty.jpg",
     imageAlt: "Screenshot of the Binty mobile health application",
