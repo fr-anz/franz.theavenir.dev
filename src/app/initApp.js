@@ -5,8 +5,8 @@ import { initGithubContributions } from "../features/github/initGithubContributi
 import { initGuestbookPhysics } from "../features/guestbook/initGuestbookPhysics.js";
 import { initScrollReveal } from "../features/motion/initScrollReveal.js";
 import { initHeaderNavigation } from "../features/navigation/initHeaderNavigation.js";
-import { initProjectCarousel } from "../features/projects/initProjectCarousel.js";
 import { HomePage } from "../pages/HomePage.js";
+import { initProjectCarousel } from "../features/projects/initProjectCarousel.js";
 
 export function initApp(root) {
   if (!root) {

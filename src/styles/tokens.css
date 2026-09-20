@@ -1,11 +1,12 @@
 :root {
-  --color-bg: #f7f7f4;
-  --color-surface: #ffffff;
-  --color-text-primary: #000000;
-  --color-text-secondary: #4a4a4a;
-  --color-border: #dadada;
-  --color-accent: #1e3a8a;
-  --color-accent-muted: #bfdbfe;
+  --color-bg: #eeede6;
+  --color-surface: #faf9f3;
+  --color-text-primary: #292823;
+  --color-text-secondary: #58574f;
+  --color-border: #c5c3b9;
+  --color-rule: #29282318;
+  --color-accent: #252394;
+  --color-accent-muted: #e1e0ee;
 
   --font-body: "PT Sans", sans-serif;
 
@@ -14,7 +15,7 @@
   --text-lg: 1.25rem;
   --text-xl: clamp(2rem, 5vw, 4.5rem);
 
-  --container-width: 1200px;
+  --container-width: 1080px;
   --page-padding: clamp(1rem, 4vw, 4rem);
 }
 
@@ -42,6 +43,6 @@
 
 @media (min-width: 1440px) {
   :root {
-    --container-width: 1360px;
+    --container-width: 1120px;
   }
 }

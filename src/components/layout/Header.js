@@ -20,7 +20,7 @@ export function Header() {
   return /* HTML */ `
     <header class="nav-bar">
       <div class="nav-container">
-        <a href="#about" class="logo"> { Franz } </a>
+        <a href="#about" class="logo" aria-label="Franz, back to top">f/b</a>
         <nav aria-label="Main navigation" data-header-navigation>
           <ul class="nav-list">
             ${links}

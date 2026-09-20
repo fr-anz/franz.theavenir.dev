@@ -4,7 +4,7 @@ export function Footer() {
   return /* HTML */ `
     <footer class="footer">
       <div class="footer-inner">
-        <h2 class="footer-name">Franz Emmanuel Baes</h2>
+        <a href="#about" class="logo" aria-label="Franz, back to top">f/b</a>
 
         <div class="footer-links">
           <div class="footer-link-group">

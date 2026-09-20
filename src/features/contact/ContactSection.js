@@ -8,7 +8,7 @@ export function ContactSection() {
       id="contact"
       aria-labelledby="contact-title"
     >
-      <h2 id="contact-title">Contact Me</h2>
+      <h2 id="contact-title">Let’s make something.</h2>
 
       <div class="contact-grid">
         <div class="contact-column">
