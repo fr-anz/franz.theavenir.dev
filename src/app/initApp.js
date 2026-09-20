@@ -1,5 +1,4 @@
 import { PageShell } from "../components/layout/PageShell.js";
-import { initCopyEmail } from "../features/contact/initCopyEmail.js";
 import { initAchievementCarousel } from "../features/achievements/initAchievementCarousel.js";
 import { initGithubContributions } from "../features/github/initGithubContributions.js";
 import { initGuestbookPhysics } from "../features/guestbook/initGuestbookPhysics.js";
@@ -15,7 +14,6 @@ export function initApp(root) {
 
   root.innerHTML = PageShell(HomePage());
 
-  initCopyEmail();
   initProjectCarousel();
   initAchievementCarousel();
   initGithubContributions();

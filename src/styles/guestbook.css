@@ -252,7 +252,8 @@
 
 .swan {
   position: absolute;
-  width: clamp(90px, 12vw, 150px);
+  /* Scale with the jar so small layouts retain room between swans. */
+  width: min(clamp(90px, 12vw, 150px), 36%);
   line-height: 0;
   padding: 0;
   border: 0;
@@ -543,10 +544,12 @@
     min-height: 0;
   }
   .guestbook-jar {
-    width: 68%;
-    max-width: 280px;
-    margin-left: auto;
-    margin-right: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin-inline: auto;
+  }
+  .swan {
+    width: 32%;
   }
   .guestbook h2 {
     max-width: 8em;

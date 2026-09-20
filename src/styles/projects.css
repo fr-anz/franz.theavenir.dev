@@ -16,6 +16,9 @@
   letter-spacing: -0.06em;
 }
 .view-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font: var(--text-base) var(--font-body);
   text-decoration: underline;
   text-underline-offset: 0.35rem;

@@ -94,7 +94,7 @@
   width: auto;
   flex: 1;
 }
-.hero-buttons #copy-email {
+.hero-buttons .button--primary {
   color: var(--color-surface);
   background: var(--color-accent);
   border-color: var(--color-accent);

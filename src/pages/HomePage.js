@@ -1,4 +1,5 @@
-import { Button } from "../components/ui/Button.js";
+import { Icon } from "../components/ui/Icon.js";
+import { site } from "../content/site.js";
 import { achievements } from "../content/achievements.js";
 import { guestbookNotes } from "../content/guestbookNotes.js";
 import { projects } from "../content/projects.js";
@@ -53,9 +54,11 @@ export function HomePage() {
           early concepts into working solutions.
         </p>
         <div class="hero-buttons">
-          ${Button({ label: "Copy email ↗", id: "copy-email" })}
+          <a class="button button--primary" href="mailto:${site.email}">
+            Email me ${Icon("mail")}
+          </a>
           <a class="button hero-projects-link" href="#projects">
-            Explore the work ↓
+            Explore the work ${Icon("arrowDown")}
           </a>
         </div>
         <div class="receipt-bottom">
@@ -100,7 +103,7 @@ export function HomePage() {
           href="https://github.com/fr-anz"
           target="_blank"
           rel="noreferrer"
-          ><span> All projects ↗ </span></a
+          >All projects ${Icon("arrowUpRight")}</a
         >
       </div>
       <div class="project-carousel" data-project-carousel>
