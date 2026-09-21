@@ -44,6 +44,7 @@ export function HomePage() {
       </figure>
 
       <div class="hero-content">
+        <h1>Franz Emmanuel Baes</h1>
         <p>
           I’m an aspiring full-stack engineer who enjoys building applications
           that turn complex ideas into practical, scalable products. I regularly
