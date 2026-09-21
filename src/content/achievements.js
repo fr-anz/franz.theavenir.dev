@@ -1,4 +1,4 @@
-// Placeholder achievements. Replace these values with real awards as they become available.
+// Selected hackathon achievements.
 export const achievements = [
   {
     distinction: "Finalist",

@@ -26,3 +26,8 @@ dist-ssr
 
 .vercel
 .env*.local
+
+# Local video workspace, Remotion config, and rendered exports
+/video/
+/remotion.config.js
+/out/

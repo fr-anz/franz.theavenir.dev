@@ -11,10 +11,24 @@
     "format:check": "prettier --check \"src/**/*.{js,css}\" \"api/**/*.js\" \"test/**/*.js\" \"*.{js,json,md,html}\"",
     "test": "node test/guestbook-moderation.test.js",
     "check": "npm run format:check && npm test && npm run build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "video:capture": "node video/capture.mjs",
+    "video:audio": "node video/audio.mjs",
+    "video:studio": "remotion studio video/index.jsx",
+    "video:render": "npm run video:render:vertical && npm run video:render:square",
+    "video:render:vertical": "remotion render video/index.jsx PortfolioVertical out/portfolio-vertical.mp4",
+    "video:render:square": "remotion render video/index.jsx PortfolioSquare out/portfolio-square.mp4",
+    "video:poster": "remotion still video/index.jsx PortfolioVertical out/portfolio-cover.png --frame=65",
+    "video:format": "prettier --check \"video/**/*.{jsx,css,mjs,md}\" remotion.config.js"
   },
   "devDependencies": {
+    "@fontsource/pt-sans": "5.3.0",
+    "@remotion/cli": "4.0.526",
+    "playwright-core": "1.63.0",
     "prettier": "^3.9.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.526",
     "vite": "^8.1.1"
   },
   "dependencies": {
