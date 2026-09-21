@@ -1,5 +1,13 @@
 export const projects = [
   {
+    title: "U-Belt Chat",
+    description:
+      "An anonymous chat and freedom wall for the U-Belt community to meet new people, share campus stories, and take a study break",
+    projectLink: "https://ubeltchat.social",
+    image: "/images/projects/ubeltchat.png",
+    imageAlt: "Screenshot of the U-Belt Chat website",
+  },
+  {
     title: "Binty",
     description:
       "Binty is a mobile application that combines real-time health monitoring, AI-powered routine generation, culturally relevant meal planning, and gentle behavioral nudges to help users build sustainable healthy habits",

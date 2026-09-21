@@ -5,15 +5,24 @@ const skeleton = Array.from(
 
 export function GithubContributions() {
   return /* HTML */ `
-    <section class="github hero-widget">
-      <h2>In the making — GitHub</h2>
+    <section class="github hero-widget" aria-labelledby="github-title">
+      <h2 id="github-title">GitHub</h2>
 
-      <div
-        id="github-contributions"
-        aria-busy="true"
-        aria-label="Loading GitHub contributions"
-      >
-        <div class="github-skeleton" aria-hidden="true">${skeleton}</div>
+      <div class="github-card">
+        <div class="github-card-header">
+          <a class="github-profile" href="https://github.com/fr-anz"
+            >@fr-anz ↗</a
+          >
+          <span class="github-period">Last 12 months</span>
+        </div>
+        <div
+          id="github-contributions"
+          aria-busy="true"
+          aria-label="GitHub contributions"
+        >
+          <div class="github-skeleton" aria-hidden="true">${skeleton}</div>
+          <p class="contribution-count">Loading contributions…</p>
+        </div>
       </div>
     </section>
   `;

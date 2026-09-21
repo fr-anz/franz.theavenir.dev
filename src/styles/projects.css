@@ -104,10 +104,11 @@
   object-fit: cover;
   object-position: top;
   filter: grayscale(1) contrast(0.85);
-  transition: filter 200ms;
+  transition: filter 800ms ease-in-out;
 }
 .work-card:hover .card-img,
-.work-card:focus-within .card-img {
+.work-card:focus-within .card-img,
+.color-mode .card-img {
   filter: none;
 }
 .card-body {

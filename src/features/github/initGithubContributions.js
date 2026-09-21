@@ -1,11 +1,11 @@
 import { fetchGithubContributions } from "./githubClient.js";
 
 const contributionColors = {
-  NONE: "#eeeeee",
-  FIRST_QUARTILE: "#bfdbfe",
-  SECOND_QUARTILE: "#93c5fd",
-  THIRD_QUARTILE: "#2563eb",
-  FOURTH_QUARTILE: "#1e3a8a",
+  NONE: "var(--color-bg)",
+  FIRST_QUARTILE: "#d2d0e8",
+  SECOND_QUARTILE: "#a29ed0",
+  THIRD_QUARTILE: "#6b65b3",
+  FOURTH_QUARTILE: "var(--color-accent)",
 };
 
 export async function initGithubContributions(
@@ -29,7 +29,8 @@ export async function initGithubContributions(
                         class="github-day"
                         title="${day.date}: ${day.contributionCount} contributions"
                         style="background-color: ${
-                          contributionColors[day.contributionLevel] || "#eeeeee"
+                          contributionColors[day.contributionLevel] ||
+                          contributionColors.NONE
                         }"
                       ></span>
                     `,
@@ -41,7 +42,8 @@ export async function initGithubContributions(
           .join("")}
       </div>
       <p class="contribution-count">
-        ${calendar.totalContributions} contributions in the last year
+        <strong>${calendar.totalContributions.toLocaleString()}</strong>
+        contributions in the last year
       </p>
     `;
   } catch {

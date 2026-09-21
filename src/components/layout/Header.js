@@ -26,6 +26,15 @@ export function Header() {
             ${links}
           </ul>
         </nav>
+        <button
+          class="color-mode-toggle"
+          type="button"
+          aria-label="Color mode"
+          aria-pressed="false"
+          data-color-mode-toggle
+        >
+          <span class="color-mode-swatch" aria-hidden="true"></span>
+        </button>
       </div>
     </header>
   `;

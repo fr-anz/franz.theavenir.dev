@@ -6,6 +6,7 @@ import { initScrollReveal } from "../features/motion/initScrollReveal.js";
 import { initHeaderNavigation } from "../features/navigation/initHeaderNavigation.js";
 import { HomePage } from "../pages/HomePage.js";
 import { initProjectCarousel } from "../features/projects/initProjectCarousel.js";
+import { initColorMode } from "../features/appearance/initColorMode.js";
 
 export function initApp(root) {
   if (!root) {
@@ -13,6 +14,7 @@ export function initApp(root) {
   }
 
   root.innerHTML = PageShell(HomePage());
+  initColorMode();
 
   initProjectCarousel();
   initAchievementCarousel();

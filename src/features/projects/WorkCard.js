@@ -26,9 +26,13 @@ export function WorkCard({
           <a class="button" href="${projectLink}">
             View project ${Icon("arrowUpRight")}
           </a>
-          <a class="button" href="${sourceLink}">
-            Source ${Icon("arrowUpRight")}
-          </a>
+          ${
+            sourceLink
+              ? /* HTML */ `<a class="button" href="${sourceLink}">
+                  Source ${Icon("arrowUpRight")}
+                </a>`
+              : ""
+          }
         </div>
       </div>
     </article>

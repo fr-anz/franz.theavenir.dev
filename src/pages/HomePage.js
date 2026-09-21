@@ -26,7 +26,9 @@ export function HomePage() {
           aria-selected="${index === 0}"
           aria-controls="achievement-slide-${index}"
           tabindex="${index === 0 ? "0" : "-1"}"
-        ></button>
+        >
+          ${String(index + 1).padStart(2, "0")}
+        </button>
       `,
     )
     .join("");
@@ -39,14 +41,9 @@ export function HomePage() {
           alt="Portrait of Franz Emmanuel Baes"
           fetchpriority="high"
         />
-        <figcaption>
-          <span>A WORK IN PROGRESS.</span
-          ><span>JUST LIKE EVERYTHING GOOD.</span>
-        </figcaption>
       </figure>
 
       <div class="hero-content">
-        <h1>Ideas into things.<br />One build at a time.</h1>
         <p>
           I’m an aspiring full-stack engineer who enjoys building applications
           that turn complex ideas into practical, scalable products. I regularly

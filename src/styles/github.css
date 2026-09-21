@@ -2,9 +2,66 @@
   min-width: 0;
 }
 
+.github-card {
+  position: relative;
+  padding: 1.25rem 1.25rem 0;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow:
+    3px 4px 0 var(--color-bg),
+    4px 5px 0 var(--color-border);
+}
+
+.github-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 1.25rem;
+  width: 2rem;
+  height: 3px;
+  background: var(--color-accent);
+}
+
+.github-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.github-profile {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.github-profile:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.github-period {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+#github-contributions {
+  padding-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
 .contribution-count {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--color-border);
+  font-size: 0.85rem;
+}
+
+.contribution-count strong {
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .github-calendar {
@@ -30,7 +87,7 @@
   width: 100%;
   aspect-ratio: 1;
   box-sizing: border-box;
-  border-radius: 999px;
+  border-radius: 0;
 }
 
 .github-skeleton {
@@ -45,8 +102,7 @@
 .github-skeleton-cell {
   width: 100%;
   height: 100%;
-  border-radius: 3px;
-  background: #e5e5e5;
+  background: var(--color-accent-muted);
   animation: skeleton-pulse 1.2s ease-in-out infinite;
 }
 
@@ -79,5 +135,15 @@
   .github-week,
   .github-skeleton {
     gap: 1px;
+  }
+}
+
+@media (max-width: 599px) {
+  .github-card {
+    padding: 1rem 0.75rem 0;
+  }
+
+  .contribution-count {
+    font-size: 0.8rem;
   }
 }
