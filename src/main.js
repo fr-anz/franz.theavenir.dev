@@ -4,4 +4,9 @@ import "./styles/index.css";
 // relative to this source file during local development.
 import "./styles/contact.css";
 
-initApp(document.querySelector("#app"));
+if (new URLSearchParams(window.location.search).get("preview") === "widgets") {
+  const { initWidgetPreview } = await import("./pages/WidgetPreview.js");
+  initWidgetPreview(document.querySelector("#app"));
+} else {
+  initApp(document.querySelector("#app"));
+}

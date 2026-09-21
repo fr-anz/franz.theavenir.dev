@@ -1,6 +1,8 @@
 import { PageShell } from "../components/layout/PageShell.js";
-import { initAchievementCarousel } from "../features/achievements/initAchievementCarousel.js";
-import { initGithubContributions } from "../features/github/initGithubContributions.js";
+import {
+  initTicketStack,
+  initPunchCard,
+} from "../features/widgets/DeskWidgets.js";
 import { initGuestbookPhysics } from "../features/guestbook/initGuestbookPhysics.js";
 import { initScrollReveal } from "../features/motion/initScrollReveal.js";
 import { initHeaderNavigation } from "../features/navigation/initHeaderNavigation.js";
@@ -17,8 +19,8 @@ export function initApp(root) {
   initColorMode();
 
   initProjectCarousel();
-  initAchievementCarousel();
-  initGithubContributions();
+  initTicketStack(root);
+  initPunchCard(root);
   initGuestbookPhysics();
   initHeaderNavigation();
   initScrollReveal();

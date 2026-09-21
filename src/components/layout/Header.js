@@ -29,10 +29,16 @@ export function Header() {
         <button
           class="color-mode-toggle"
           type="button"
-          aria-label="Color mode"
+          aria-label="Show colors"
           aria-pressed="false"
           data-color-mode-toggle
         >
+          <span class="color-mode-callout" aria-hidden="true">
+            <span>Click me</span>
+            <svg viewBox="0 0 60 32" fill="none">
+              <path d="M3 24C16 34 39 30 52 7M42 10L52 7L54 18" />
+            </svg>
+          </span>
           <span class="color-mode-swatch" aria-hidden="true"></span>
         </button>
       </div>
